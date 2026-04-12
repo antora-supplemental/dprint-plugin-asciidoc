@@ -32,5 +32,9 @@ local.db-journal
 /target
 
 *.log
-.vscode/
+.vscode/*
+!.vscode/extensions.json
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
 .history/
