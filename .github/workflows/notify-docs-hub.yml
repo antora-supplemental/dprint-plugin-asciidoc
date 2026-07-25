@@ -1,0 +1,30 @@
+# Optional: poke antora-supplemental/docs on docs push (full site regenerate).
+# Prefer: gh api repos/antora-supplemental/docs/dispatches -f event_type=docs-source-updated ...
+# Architecture: https://github.com/antora-supplemental/docs (site-rebuild.adoc)
+
+name: Notify docs hub
+
+on:
+  push:
+    branches: [main, master]
+    paths:
+      - "docs/**"
+  workflow_dispatch:
+
+jobs:
+  notify:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Dispatch docs-source-updated
+        env:
+          GH_TOKEN: ${{ secrets.DOCS_DISPATCH_TOKEN }}
+        run: |
+          if [ -z "$GH_TOKEN" ]; then
+            echo "DOCS_DISPATCH_TOKEN not set; skip (use gh api locally)."
+            exit 0
+          fi
+          gh api "repos/antora-supplemental/docs/dispatches" \
+            -f event_type=docs-source-updated \
+            -f "client_payload[source]=${{ github.repository }}" \
+            -f "client_payload[ref]=${{ github.ref }}" \
+            -f "client_payload[sha]=${{ github.sha }}"
