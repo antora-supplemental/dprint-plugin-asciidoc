@@ -1,24 +1,45 @@
-= dprint-plugin-asciidoc
-:icons: font
+ifndef::env-github[:icons: font]
 :toc: macro
-:toc-title:
+:toc-title: Contents
+:toclevels: 2
+:icons: font
+:sectanchors:
+endif::[]
+
+ifndef::env-github[]
+image:https://img.shields.io/github/contributors/antora-supplemental/dprint-plugin-asciidoc.svg?style=for-the-badge[Contributors,link=https://github.com/antora-supplemental/dprint-plugin-asciidoc/graphs/contributors]
+image:https://img.shields.io/github/forks/antora-supplemental/dprint-plugin-asciidoc.svg?style=for-the-badge[Forks,link=https://github.com/antora-supplemental/dprint-plugin-asciidoc/network/members]
+image:https://img.shields.io/github/stars/antora-supplemental/dprint-plugin-asciidoc.svg?style=for-the-badge[Stars,link=https://github.com/antora-supplemental/dprint-plugin-asciidoc/stargazers]
+image:https://img.shields.io/github/issues/antora-supplemental/dprint-plugin-asciidoc.svg?style=for-the-badge[Issues,link=https://github.com/antora-supplemental/dprint-plugin-asciidoc/issues]
+image:https://img.shields.io/github/license/antora-supplemental/dprint-plugin-asciidoc.svg?style=for-the-badge[License,link=https://github.com/antora-supplemental/dprint-plugin-asciidoc/blob/main/LICENSE]
+endif::[]
+
+ifdef::env-github[]
+image:https://img.shields.io/github/contributors/antora-supplemental/dprint-plugin-asciidoc.svg?style=for-the-badge[Contributors]
+image:https://img.shields.io/github/forks/antora-supplemental/dprint-plugin-asciidoc.svg?style=for-the-badge[Forks]
+image:https://img.shields.io/github/stars/antora-supplemental/dprint-plugin-asciidoc.svg?style=for-the-badge[Stars]
+image:https://img.shields.io/github/issues/antora-supplemental/dprint-plugin-asciidoc.svg?style=for-the-badge[Issues]
+image:https://img.shields.io/github/license/antora-supplemental/dprint-plugin-asciidoc.svg?style=for-the-badge[License]
+endif::[]
+
+= dprint-plugin-asciidoc
+
+dprint plugin for AsciiDoc. Format .adoc files with dprint (WASM, npm).
+
+link:https://antora-supplemental.github.io/docs[Explore the docs] ·
+link:https://github.com/antora-supplemental/dprint-plugin-asciidoc/issues[Report Bug] ·
+link:https://github.com/antora-supplemental/dprint-plugin-asciidoc/issues[Request Feature]
+
+== About The Project
 
 An link:https://dprint.dev[dprint] plugin for link:https://asciidoc.org[AsciiDoc] files.
-
-toc::[]
-
-== Documentation Files
 
 This repository contains two README files with distinct purposes:
 
 * `README.adoc` (this file) — The main project documentation covering development, building from source, and comprehensive usage
 * `npm/README.md` — Consumer-focused documentation for the npm package at https://www.npmjs.com/package/dprint-plugin-asciidoc
 
-== Overview
-
 This plugin provides formatting for AsciiDoc files using dprint. It uses the link:https://github.com/scouten/asciidoc-parser[asciidoc-parser] crate for parsing and validation.
-
-== Installation
 
 === Via URL (Recommended)
 
@@ -151,3 +172,10 @@ cargo test
 == License
 
 link:LICENSE[MIT License]
+
+== Contact
+
+Antora Supplemental — support@antora-supplemental.org
+
+* Project: https://github.com/antora-supplemental/dprint-plugin-asciidoc
+* Site: https://antora-supplemental.org
