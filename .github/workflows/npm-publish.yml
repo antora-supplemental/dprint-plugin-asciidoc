@@ -36,10 +36,14 @@ jobs:
           version: 10
 
       - name: Setup Node.js
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v6
         with:
-          node-version: '20'
+          node-version: '24'
           registry-url: 'https://registry.npmjs.org'
+          package-manager-cache: false
+
+      - name: Install current npm CLI
+        run: npm install --global npm@11.19.1
 
       - name: Update package version
         working-directory: ./npm
@@ -51,9 +55,22 @@ jobs:
         run: |
           cp target/wasm32-unknown-unknown/release/dprint_plugin_asciidoc.wasm npm/dprint_plugin_asciidoc.wasm
 
-      - name: Publish to NPM
+      - name: Check NPM registry
+        id: npm
         working-directory: ./npm
-        run: npm publish --provenance --access public
+        run: |
+          NAME=$(node -p "require('./package.json').name")
+          VERSION=$(node -p "require('./package.json').version")
+          if npm view "$NAME@$VERSION" version >/dev/null 2>&1; then
+            echo "publish=false" >> "$GITHUB_OUTPUT"
+          else
+            echo "publish=true" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Publish to NPM
+        if: steps.npm.outputs.publish == 'true'
+        working-directory: ./npm
+        run: npm publish --access public
 
       - name: Create NPM package tarball
         working-directory: ./npm
